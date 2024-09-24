@@ -17,4 +17,9 @@ export const userLocal = {
       }
     }
   },
+  remove: () => {
+    if (typeof window != "undefined") {
+      localStorage.removeItem("User__infor_next");
+    }
+  },
 };

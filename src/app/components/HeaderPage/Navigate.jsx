@@ -1,16 +1,22 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import NavLogin from "./NavLogin";
+import NavLogout from "./NavLogout";
 
 export default function Navigate() {
   const { inforUser } = useSelector((state) => state.userSlice);
+  const [isValue, setValue] = useState(false);
   const renderApp = () => {
     if (inforUser) {
-      return "đã đăng nhập";
+      return <NavLogout />;
     } else {
-      return "chưa đăng nhập";
+      return <NavLogin />;
     }
   };
+  useEffect(() => {
+    setValue(true);
+  }, []);
 
-  return <div>{renderApp()}</div>;
+  return <div>{isValue ? renderApp() : ""}</div>;
 }

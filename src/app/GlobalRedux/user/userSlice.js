@@ -10,7 +10,12 @@ const initialState = {
 const userSlice = createSlice({
   name: "userSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    logoutAction: (state, action) => {
+      state.inforUser = null;
+      userLocal.remove();
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(loginThunk.fulfilled, (state, action) => {
       console.log(action.payload.content);
@@ -20,6 +25,6 @@ const userSlice = createSlice({
   },
 });
 
-export const {} = userSlice.actions;
+export const { logoutAction } = userSlice.actions;
 
 export default userSlice.reducer;
